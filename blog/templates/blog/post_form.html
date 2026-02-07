@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block title %}写文章{% endblock %}
+
+{% block content %}
+<h2>写文章</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">保存</button>
+</form>
+
+<p>
+    <a href="{% url 'blog:post_list' %}">← 返回列表</a>
+</p>
+{% endblock %}

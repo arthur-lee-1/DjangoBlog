@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+
+{% block title %}文章列表{% endblock %}
+
+{% block content %}
+<p>
+<a href="{% url 'blog:post_create' %}">新建文章</a>
+</p>
+<h2>文章列表</h2>
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{% url 'blog:post_detail' post.id %}">
+                {{ post.title }}
+            </a>
+        </li>
+    {% empty %}
+        <li>暂无文章</li>
+    {% endfor %}
+</ul>
+{% endblock %}
