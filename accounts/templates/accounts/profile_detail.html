@@ -8,6 +8,12 @@
   <p><a href="{% url 'accounts:profile_edit' %}">编辑资料</a></p>
 {% endif %}
 
+{% if u.profile.avatar %}
+  <img src="{{ u.profile.avatar.url }}" alt="avatar" width="120">
+{% else %}
+  <p>（暂无头像）</p>
+{% endif %}
+
 <h3>他的文章</h3>
 <ul>
   {% for post in posts %}
