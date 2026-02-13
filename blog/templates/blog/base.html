@@ -14,10 +14,13 @@
       <p>
         {% if user.is_authenticated %}
             你好，{{ user.username }}
-          <form action="{% url 'accounts:logout' %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit">退出</button>
-          </form>
+            <br>
+           <a href="{% url 'accounts:profile_detail' user.username %}">我的主页</a> |
+           <a href="{% url 'accounts:profile_edit' %}">编辑资料</a>
+           <form action="{% url 'accounts:logout' %}" method="post" style="display:inline;">
+             {% csrf_token %}
+             <button type="submit">退出</button>
+           </form>
         {% else %}
           <a href="{% url 'accounts:login' %}">登录</a> |
           <a href="{% url 'accounts:register' %}">注册</a>
