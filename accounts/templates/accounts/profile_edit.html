@@ -1,0 +1,39 @@
+{% extends "blog/base.html" %}
+
+{% block title %}编辑个人资料{% endblock %}
+
+{% block content %}
+<h2>编辑个人资料</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div>
+        <label>昵称：</label>
+        {{ form.nickname }}
+    </div>
+
+    <div>
+        <label>简介：</label>
+        {{ form.bio }}
+    </div>
+
+    <div>
+        <label>头像：</label>
+        {{ form.avatar }}
+    </div>
+
+    <button type="submit">保存修改</button>
+</form>
+
+<hr>
+
+<p>
+    <a href="{% url 'accounts:profile_detail' user.username %}">
+        返回个人主页
+    </a>
+</p>
+
+{% endblock %}
+
+enctype="multipart/form-data" # 必须加，否则头像无法上传

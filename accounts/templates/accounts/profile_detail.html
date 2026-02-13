@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+{% block title %}用户主页{% endblock %}
+{% block content %}
+<h2>{{ u.profile.nickname|default:u.username }}</h2>
+<p>{{ u.profile.bio }}</p>
+
+{% if u == user %}
+  <p><a href="{% url 'accounts:profile_edit' %}">编辑资料</a></p>
+{% endif %}
+
+<h3>他的文章</h3>
+<ul>
+  {% for post in posts %}
+    <li><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></li>
+  {% empty %}
+    <li>暂无文章</li>
+  {% endfor %}
+</ul>
+{% endblock %}

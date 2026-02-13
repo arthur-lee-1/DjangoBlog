@@ -8,9 +8,23 @@
 </head>
 <body>
     <header>
-        <h1>我的 Django 博客</h1>
-        <hr>
+      <h1>我的 Django 博客</h1>
+      <hr>
+
+      <p>
+        {% if user.is_authenticated %}
+            你好，{{ user.username }}
+          <form action="{% url 'accounts:logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">退出</button>
+          </form>
+        {% else %}
+          <a href="{% url 'accounts:login' %}">登录</a> |
+          <a href="{% url 'accounts:register' %}">注册</a>
+        {% endif %}
+      </p>
     </header>
+
 
     <main>
         {% block content %}

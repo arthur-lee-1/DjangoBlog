@@ -42,6 +42,9 @@ def post_create(request):
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
 
+    if post.author != request.user:
+        return HttpResponseForbidden("你没有权限编辑这篇文章")
+
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
